@@ -1,0 +1,32 @@
+<div class="flex flex-col items-center justify-center">
+  <h2 class="text-2xl font-semibold mb-4">{{ getQuestion() | titlecase }}</h2>
+
+  <!-- <i class="bi bi-check-circle-fill"></i>
+  <i class="bi bi-x-circle-fill"></i> -->
+
+  <ul class="space-y-4">
+    <li
+      class="cursor-pointer flex justify-between"
+      *ngFor="let answer of listOfQuestions![getIndex()].answers"
+      (click)="setChosenAnswer(answer)"
+      [ngClass]="answer === getChosenAnwer() ? 'bg-green-300' : ''"
+    >
+      <!-- <span class="text-green-500 font-semibold">-</span> -->
+      <span class="ml-2">{{ answer.name | titlecase }}</span>
+      <i
+        class="bi bi-check-circle-fill text-blue-600 text-2xl ml-3 text-right"
+      ></i>
+    </li>
+  </ul>
+
+  <button
+    class="mt-4 px-4 py-2 rounded-full transition duration-300 ease-in-out"
+    [ngClass]="{
+      'bg-green-500 text-white hover:bg-green-600': getBtnStatus() === true,
+      'bg-gray-300 text-gray-600 cursor-not-allowed': getBtnStatus() === false
+    }"
+    [disabled]="getBtnStatus()"
+  >
+    Accept
+  </button>
+</div>

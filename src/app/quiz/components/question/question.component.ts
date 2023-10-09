@@ -11,6 +11,7 @@ import { Question } from '../../interfaces/question.interface';
 export class QuestionComponent implements OnInit {
   // ! attributes
   listOfQuestions: Question[] | undefined;
+  btnString: string = 'Accept';
   // ! constructor
   constructor(private quizService: QuizService) {}
   // ! methods
@@ -31,15 +32,29 @@ export class QuestionComponent implements OnInit {
 
   setChosenAnswer(answer: Answer) {
     this.quizService.chosenAnswer = answer;
-    this.quizService.btnStatus = true;
+    this.quizService.btnStatus = false;
   }
   getChosenAnwer() {
     return this.quizService.chosenAnswer;
   }
 
-  highlightChosenAnswer(answer: Answer) {
-    if (answer === this.quizService.chosenAnswer) {
-      return;
+  // highlightChosenAnswer(answer: Answer) {
+  //   if (answer === this.quizService.chosenAnswer) {
+  //     return;
+  //   }
+  // }
+
+  getAcceptClicked() {
+    return this.quizService.acceptClicked;
+  }
+
+  next() {
+    switch (this.btnString) {
+      case 'Accept': {
+        this.quizService.acceptClicked = true;
+        this.btnString = 'Next';
+        console.log('wasap');
+      }
     }
   }
 }

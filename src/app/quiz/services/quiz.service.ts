@@ -44,8 +44,8 @@ export class QuizService {
 
   currentQuestion: number = 0;
   chosenAnswer: Answer | undefined;
-  btnStatus: boolean = false;
-  checkedQuestion: boolean = false;
+  btnStatus: boolean = true;
+  acceptClicked = false;
 
   constructor() {}
 

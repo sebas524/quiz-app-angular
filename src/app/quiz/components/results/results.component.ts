@@ -12,14 +12,35 @@ import { Router } from '@angular/router';
 export class ResultsComponent implements OnInit {
   listOfQuestions: Question[] | undefined;
   userAnswers: Array<number> | undefined;
+  correctQuestionsCount: number = 0;
+
   constructor(private quizService: QuizService, private router: Router) {}
 
   ngOnInit(): void {
     this.listOfQuestions = this.quizService.questions;
     this.userAnswers = this.quizService.userAnswers;
+    // Calculate the number of correct questions
+    this.correctQuestionsCount = this.calculateCorrectQuestions();
   }
   goBack(): void {
     this.quizService.userAnswers = []; //* remember userAnswers contains array of chosen answers!
+
     this.router.navigateByUrl('/quiz');
+  }
+
+  calculateCorrectQuestions(): number {
+    let count = 0;
+    if (this.listOfQuestions && this.userAnswers) {
+      for (let i = 0; i < this.listOfQuestions.length; i++) {
+        const question = this.listOfQuestions[i];
+        if (
+          question.answers[this.userAnswers[i]] &&
+          question.answers[this.userAnswers[i]].isRight === 1
+        ) {
+          count++;
+        }
+      }
+    }
+    return count;
   }
 }

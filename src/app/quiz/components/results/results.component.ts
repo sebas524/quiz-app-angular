@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Question } from '../../interfaces/question.interface';
-import { Answer } from '../../interfaces/answer.interface';
 import { QuizService } from '../../services/quiz.service';
 import { Router } from '@angular/router';
 

@@ -40,6 +40,15 @@ export class QuizService {
         { name: 'munich', isRight: 0 },
       ],
     },
+    {
+      description: 'what is the capital of the USA?',
+      answers: [
+        { name: 'New York', isRight: 0 },
+        { name: 'Texas', isRight: 0 },
+        { name: 'Los Angeles', isRight: 0 },
+        { name: 'Washington D.C', isRight: 1 },
+      ],
+    },
   ];
 
   questionIndex: number = 0;

@@ -1,0 +1,30 @@
+<h1 class="text-center text-2xl font-semibold mb-4">Test Results:</h1>
+<hr />
+<div class="flex flex-col items-center justify-center">
+  <div class="my-2" *ngFor="let question of listOfQuestions; let i = index">
+    <h4 class="text-lg font-medium mt-4">
+      -> {{ question.description | titlecase }}
+    </h4>
+    <ul>
+      <ng-container
+        *ngFor="let answer of listOfQuestions![i].answers; let j = index"
+      >
+        <li
+          class="p-2 text-lg font-medium rounded-lg"
+          [ngClass]="{
+            'bg-green-300': answer.isRight === 1 && userAnswers![i] === j,
+            'bg-red-300': answer.isRight === 0 && userAnswers![i] === j
+          }"
+        >
+          {{ answer.name | titlecase }}
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+  <button
+    class="mt-4 px-6 py-3 rounded-full transition duration-300 ease-in-out bg-blue-500 text-white hover:bg-blue-600"
+    (click)="goBack()"
+  >
+    Go Back
+  </button>
+</div>

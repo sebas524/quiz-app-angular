@@ -42,10 +42,12 @@ export class QuizService {
     },
   ];
 
-  currentQuestion: number = 0;
+  questionIndex: number = 0;
   chosenAnswer: Answer | undefined;
   btnStatus: boolean = true;
-  acceptClicked = false;
+  acceptClicked: boolean = false;
+  answerIndex: number = 0;
+  userAnswers: Array<number> = []; //* remember userAnswers contains array of chosen answers!
 
   constructor() {}
 

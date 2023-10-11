@@ -4,8 +4,8 @@
   <ul class="space-y-4 w-full">
     <li
       class="cursor-pointer text-center p-4 text-lg font-medium transition duration-300 ease-in-out transform hover:scale-105 rounded-lg border border-gray-300"
-      *ngFor="let answer of listOfQuestions![getIndex()].answers"
-      (click)="setChosenAnswer(answer)"
+      *ngFor="let answer of listOfQuestions![getIndex()].answers; let i = index"
+      (click)="setChosenAnswer(answer, i)"
       [ngClass]="{
         'bg-blue-300': answer === getChosenAnwer() && !getAcceptClicked(),
         'bg-green-300':

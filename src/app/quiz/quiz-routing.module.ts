@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { QuestionComponent } from './components/question/question.component';
-import { AnswerComponent } from './components/answer/answer.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ResultsComponent } from './components/results/results.component';
 
 const routes: Routes = [
   {
@@ -16,8 +16,8 @@ const routes: Routes = [
         component: QuestionComponent,
       },
       {
-        path: 'answer',
-        component: AnswerComponent,
+        path: 'results',
+        component: ResultsComponent,
       },
       {
         path: '**',

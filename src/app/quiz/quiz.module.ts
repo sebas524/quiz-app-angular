@@ -6,14 +6,14 @@ import { SharedModule } from '../shared/shared.module';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { QuestionComponent } from './components/question/question.component';
-import { AnswerComponent } from './components/answer/answer.component';
+import { ResultsComponent } from './components/results/results.component';
 
 @NgModule({
   declarations: [
     MainLayoutComponent,
     DashboardComponent,
     QuestionComponent,
-    AnswerComponent,
+    ResultsComponent,
   ],
   imports: [CommonModule, QuizRoutingModule, SharedModule],
 })

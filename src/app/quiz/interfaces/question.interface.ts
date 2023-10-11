@@ -1,5 +1,10 @@
 import { Answer } from './answer.interface';
 
+export interface Question {
+  description: string;
+  answers: Answer[];
+}
+
 // export class Question {
 //   description: string;
 //   answers: Answer[];
@@ -8,8 +13,3 @@ import { Answer } from './answer.interface';
 //     (this.description = description), (this.answers = answers);
 //   }
 // }
-
-export interface Question {
-  description: string;
-  answers: Answer[];
-}

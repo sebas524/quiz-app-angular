@@ -40,7 +40,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  getQuestions(): Observable<Question[]> {
+  fetchApiQuestions(): Observable<Question[]> {
     return this.http
       .get<OpenTriviaDB>(
         `${this.baseUrl}?amount=10&difficulty=easy&type=multiple`

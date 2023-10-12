@@ -9,7 +9,7 @@ import { ApiService } from '../../services/api.service';
 export class DashboardComponent implements OnInit {
   constructor(private apiService: ApiService) {}
   ngOnInit(): void {
-    this.apiService.getQuestions().subscribe((data) => {
+    this.apiService.fetchApiQuestions().subscribe((data) => {
       console.log(data);
     });
   }

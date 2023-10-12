@@ -14,6 +14,8 @@ export class QuestionComponent implements OnInit, OnDestroy {
   // ! attributes
   listOfQuestions: Question[] | undefined;
   btnString: string = 'Accept';
+  loading: boolean = true; // Add loading flag
+
   // ! constructor
   constructor(private quizService: QuizService, private router: Router) {}
   // ! methods
@@ -25,6 +27,8 @@ export class QuestionComponent implements OnInit, OnDestroy {
       .getQuestions()
       .subscribe((questions) => {
         this.listOfQuestions = questions;
+        this.loading = false; // Set loading to false when data is available
+
         console.log('xxx: ', this.listOfQuestions);
       });
   }

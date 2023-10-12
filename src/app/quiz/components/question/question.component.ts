@@ -1,27 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Answer } from '../../interfaces/answer.interface';
 import { QuizService } from '../../services/quiz.service';
 import { Question } from '../../interfaces/question.interface';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
   styles: [],
 })
-export class QuestionComponent implements OnInit {
+export class QuestionComponent implements OnInit, OnDestroy {
   // ! attributes
   listOfQuestions: Question[] | undefined;
   btnString: string = 'Accept';
   // ! constructor
   constructor(private quizService: QuizService, private router: Router) {}
   // ! methods
+
+  private questionsSubscription: Subscription | undefined;
+
   ngOnInit(): void {
-    this.quizService.getQuestions().subscribe((questions) => {
-      this.listOfQuestions = questions;
-      console.log('xxx: ', this.listOfQuestions);
-    });
+    this.questionsSubscription = this.quizService
+      .getQuestions()
+      .subscribe((questions) => {
+        this.listOfQuestions = questions;
+        console.log('xxx: ', this.listOfQuestions);
+      });
   }
+  ngOnDestroy(): void {
+    if (this.questionsSubscription) {
+      this.questionsSubscription.unsubscribe();
+    }
+  }
+
   getQuestion() {
     return this.listOfQuestions![this.getIndex()].description;
   }

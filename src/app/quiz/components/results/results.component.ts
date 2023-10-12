@@ -23,6 +23,7 @@ export class ResultsComponent implements OnInit {
   }
   goBack(): void {
     this.quizService.userAnswers = []; //* remember userAnswers contains array of chosen answers!
+    this.quizService.questions = []; //* to clear questions array (so new questions can be fetched by api again)
 
     this.router.navigateByUrl('/quiz');
   }

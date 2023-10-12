@@ -1,30 +1,3 @@
-// import { Injectable } from '@angular/core';
-// import { HttpClient } from '@angular/common/http';
-// import { Observable, map } from 'rxjs';
-// import { environments } from 'src/app/environments/environments';
-// import { OpenTriviaDB, Result } from '../interfaces/openTriviaDb.interface';
-
-// @Injectable({
-//   providedIn: 'root',
-// })
-// export class ApiService {
-//   private baseUrl: string = environments.baseUrl;
-
-//   constructor(private http: HttpClient) {}
-
-//   getQuestions(): Observable<Result[]> {
-//     return this.http
-//       .get<OpenTriviaDB>(
-//         `${this.baseUrl}?amount=10&difficulty=easy&type=multiple`
-//       )
-//       .pipe(
-//         map((data) => {
-//           return data.results;
-//         })
-//       );
-//   }
-// }
-
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';

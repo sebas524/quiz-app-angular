@@ -17,8 +17,10 @@ export class QuestionComponent implements OnInit {
   constructor(private quizService: QuizService, private router: Router) {}
   // ! methods
   ngOnInit(): void {
-    this.listOfQuestions = this.quizService.getQuestions();
-    console.log('xxx: ', this.listOfQuestions);
+    this.quizService.getQuestions().subscribe((questions) => {
+      this.listOfQuestions = questions;
+      console.log('xxx: ', this.listOfQuestions);
+    });
   }
   getQuestion() {
     return this.listOfQuestions![this.getIndex()].description;

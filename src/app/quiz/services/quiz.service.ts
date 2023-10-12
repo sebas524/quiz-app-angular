@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Question } from '../interfaces/question.interface';
 import { Answer } from '../interfaces/answer.interface';
+import { ApiService } from './api.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -21,35 +23,13 @@ export class QuizService {
   //   ]),
   // ];
 
-  public questions: Question[] = [
-    {
-      description: 'what is the capital of colombia?',
-      answers: [
-        { name: 'cali', isRight: 0 },
-        { name: 'bogota', isRight: 1 },
-        { name: 'medellin', isRight: 0 },
-        { name: 'barranquilla', isRight: 0 },
-      ],
-    },
-    {
-      description: 'what is the capital of germany?',
-      answers: [
-        { name: 'berlin', isRight: 1 },
-        { name: 'stuttgart', isRight: 0 },
-        { name: 'potsdam', isRight: 0 },
-        { name: 'munich', isRight: 0 },
-      ],
-    },
-    {
-      description: 'what is the capital of the USA?',
-      answers: [
-        { name: 'New York', isRight: 0 },
-        { name: 'Texas', isRight: 0 },
-        { name: 'Los Angeles', isRight: 0 },
-        { name: 'Washington D.C', isRight: 1 },
-      ],
-    },
-  ];
+  public questions: Question[] = [];
+
+  constructor(private apiService: ApiService) {
+    this.apiService.fetchApiQuestions().subscribe((fetchedQuestions) => {
+      this.questions = fetchedQuestions; // Set the fetched questions in the service
+    });
+  }
 
   questionIndex: number = 0;
   chosenAnswer: Answer | undefined;
@@ -58,10 +38,18 @@ export class QuizService {
   answerIndex: number = 0;
   userAnswers: Array<number> = []; //* remember userAnswers contains array of chosen answers!
 
-  constructor() {}
-
-  getQuestions() {
-    const questions = [...this.questions];
-    return questions;
+  getQuestions(): Observable<Question[]> {
+    return new Observable((observer) => {
+      if (this.questions.length > 0) {
+        observer.next(this.questions);
+        observer.complete();
+      } else {
+        this.apiService.fetchApiQuestions().subscribe((fetchedQuestions) => {
+          this.questions = fetchedQuestions;
+          observer.next(this.questions);
+          observer.complete();
+        });
+      }
+    });
   }
 }

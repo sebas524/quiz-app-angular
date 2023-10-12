@@ -1,16 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../services/api.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styles: [],
 })
-export class DashboardComponent implements OnInit {
-  constructor(private apiService: ApiService) {}
-  ngOnInit(): void {
-    this.apiService.fetchApiQuestions().subscribe((data) => {
-      console.log(data);
-    });
-  }
-}
+export class DashboardComponent {}

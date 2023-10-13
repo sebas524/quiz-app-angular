@@ -23,6 +23,8 @@ export class QuestionComponent implements OnInit, OnDestroy {
   private questionsSubscription: Subscription | undefined;
 
   ngOnInit(): void {
+    this.quizService.userAnswers = []; //* remember userAnswers contains array of chosen answers!
+
     this.questionsSubscription = this.quizService
       .getQuestions()
       .subscribe((questions) => {

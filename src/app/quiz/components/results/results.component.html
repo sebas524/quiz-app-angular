@@ -25,6 +25,12 @@
             }"
           >
             {{ answer.name | titlecase }}
+            <!-- Display the correct answer only if the user's answer is wrong -->
+            <span
+              *ngIf="answer.isRight === 1 && userAnswers![i] !== j"
+              class="text-gray-600 ml-2 italic"
+              >(Correct Answer)</span
+            >
           </li>
         </ng-container>
       </ul>

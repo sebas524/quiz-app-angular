@@ -28,8 +28,6 @@ export class QuestionComponent implements OnInit, OnDestroy {
       .subscribe((questions) => {
         this.listOfQuestions = questions;
         this.loading = false; // Set loading to false when data is available
-
-        console.log('xxx: ', this.listOfQuestions);
       });
   }
   ngOnDestroy(): void {
@@ -68,9 +66,6 @@ export class QuestionComponent implements OnInit, OnDestroy {
   }
 
   next() {
-    console.log('question index', this.getIndex());
-    console.log('user answers', this.quizService.userAnswers);
-
     switch (this.btnString) {
       case 'Accept': {
         this.quizService.acceptClicked = true;

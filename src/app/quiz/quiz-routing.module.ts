@@ -4,6 +4,7 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
 import { QuestionComponent } from './components/question/question.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ResultsComponent } from './components/results/results.component';
+import { resultsGuard } from './guards/results.guard';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
       {
         path: 'results',
         component: ResultsComponent,
+        canActivate: [resultsGuard],
       },
       {
         path: '**',

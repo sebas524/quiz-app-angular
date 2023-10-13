@@ -30,6 +30,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
       .subscribe((questions) => {
         this.listOfQuestions = questions;
         this.loading = false; // Set loading to false when data is available
+        console.log('list of questions:', this.listOfQuestions);
       });
   }
   ngOnDestroy(): void {

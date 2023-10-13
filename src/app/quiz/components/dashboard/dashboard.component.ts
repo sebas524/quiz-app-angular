@@ -11,5 +11,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.quizService.userAnswers = []; //* remember userAnswers contains array of chosen answers!
     this.quizService.questions = []; //* to clear questions array (so new questions can be fetched by api again)
+    this.quizService.questionIndex = 0;
   }
 }

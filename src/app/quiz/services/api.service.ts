@@ -32,19 +32,25 @@ export class ApiService {
       .pipe(
         map((data) => {
           return data.results.map((result: Result) => {
+            const answers = [
+              {
+                name: this.decodeHtmlEntities(result.correct_answer),
+                isRight: 1, //* Set isRight to 1 for correct answers
+              },
+              ...result.incorrect_answers.map((incorrectAnswer) => ({
+                name: this.decodeHtmlEntities(incorrectAnswer),
+                isRight: 0, //* Set isRight to 0 for incorrect answers
+              })),
+            ];
+
+            // Shuffle the answers randomly
+            answers.sort(() => Math.random() - 0.5);
+
             const question: Question = {
-              description: this.decodeHtmlEntities(result.question), // Decode HTML entities
-              answers: [
-                {
-                  name: this.decodeHtmlEntities(result.correct_answer), // Decode HTML entities for correct answer
-                  isRight: 1, //* Set isRight to 0 for correct answers
-                },
-                ...result.incorrect_answers.map((incorrectAnswer) => ({
-                  name: this.decodeHtmlEntities(incorrectAnswer), // Decode HTML entities
-                  isRight: 0, //* Set isRight to 0 for incorrect answers
-                })),
-              ],
+              description: this.decodeHtmlEntities(result.question),
+              answers: answers,
             };
+
             return question;
           });
         })
